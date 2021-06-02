@@ -8,7 +8,6 @@ struct Character
 	UINT8 width;
 	UINT8 height;
 } mario;
-const char blankmap[1] = {0x20};
 
 /* move mario */
 void moveMario(struct Character *character, UINT8 x, UINT8 y)
@@ -55,12 +54,13 @@ void marioSetup()
 
 UBYTE canMarioMove(UINT8 newx, UINT8 newy)
 {
+	const char blankmap[1] = {0x20};
 	UINT16 indexTlx, indexTly, tileindexTL;
 	UBYTE result;
 	
 	
-	indexTlx = (newx - 8) / 8;
-	indexTly = (newy - 8) / 8;
+	indexTlx = (newx) / 8;
+	indexTly = (newy) / 8;
 	tileindexTL = 20 * indexTly + indexTlx;
 	
 	result = map[tileindexTL] == blankmap[0];
@@ -127,9 +127,6 @@ void marioMovement()
 		{
 			mario.x = 0;
 		}
-		
-		/*mario.y++;
-		moveMario(&mario, mario.x, mario.y);Z*/
 		delay(10);
 	}
 }
