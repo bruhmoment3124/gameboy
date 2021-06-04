@@ -52,7 +52,8 @@ void marioSetup()
 	moveMario(&mario, mario.x, mario.y); /* move mario */
 }
 
-UBYTE canMarioMove(UINT8 newx, UINT8 newy)
+/* collision */
+UBYTE canEntityMove(UINT8 newx, UINT8 newy)
 {
 	const char blankmap[1] = {0x20};
 	UINT16 indexTlx, indexTly, tileindexTL;
@@ -70,63 +71,50 @@ UBYTE canMarioMove(UINT8 newx, UINT8 newy)
 /* mario controls */
 void marioMovement()
 {
-	while(1)
+	/* move left */
+	if(joypad() & J_LEFT)
 	{
-		/* move left */
-		if(joypad() & J_LEFT)
+		if(canEntityMove(mario.x-8, mario.y))
 		{
-			if(canMarioMove(mario.x-8, mario.y))
-			{
-				mario.x -= 1;
-				moveMario(&mario, mario.x, mario.y);
-			}
+			mario.x -= 1;
+			moveMario(&mario, mario.x, mario.y);
 		}
-		
-		/* move right */
-		if(joypad() & J_RIGHT)
-		{
-			if(canMarioMove(mario.x+8, mario.y))
-			{
-				mario.x += 1;
-				moveMario(&mario, mario.x, mario.y);
-			}
-		}
-		
-		if(joypad() & J_UP)
-		{
-			if(canMarioMove(mario.x, mario.y-8))
-			{
-				mario.y -= 1;
-				moveMario(&mario, mario.x, mario.y);
-			}
-		}
-		
-		if(joypad() & J_DOWN)
-		{
-			if(canMarioMove(mario.x, mario.y+8))
-			{
-				mario.y += 1;
-				moveMario(&mario, mario.x, mario.y);
-			}
-		}
-		
-		if(joypad() & J_B)
-		{
-			if(canMarioMove(mario.x, mario.y-8))
-			{
-				mario.y -= 5;
-				moveMario(&mario, mario.x, mario.y);
-			}
-		}
-		
-		/* screen wrap */
-		if(mario.x <= 0)
-		{
-			mario.x = 160;
-		} else if(mario.x >= 160)
-		{
-			mario.x = 0;
-		}
-		delay(10);
 	}
+		
+	/* move right */
+	if(joypad() & J_RIGHT)
+	{
+		if(canEntityMove(mario.x+8, mario.y))
+		{
+			mario.x += 1;
+			moveMario(&mario, mario.x, mario.y);
+		}
+	}
+		
+	/* jump */
+	if(joypad() & J_B)
+	{
+		if(canEntityMove(mario.x, mario.y-8))
+		{
+			mario.y -= 5;
+			moveMario(&mario, mario.x, mario.y);
+		}
+	}
+		
+	/* screen wrap */
+	if(mario.x <= 0)
+	{
+		mario.x = 160;
+	} else if(mario.x >= 160)
+	{
+		mario.x = 0;
+	}
+		
+	/* gravity */
+	if(canEntityMove(mario.x, mario.y+8))
+	{
+		mario.y += 2;
+		moveMario(&mario, mario.x, mario.y);
+	}
+	delay(10);
 }
