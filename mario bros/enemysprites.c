@@ -24,7 +24,7 @@ void enemySetup()
 void enemyMovement()
 {
 	/* collision */
-	if(canEntityMove(turtle.x, turtle.y-8))
+	if(canEntityMove(turtle.x, turtle.y-8, 0x20))
 	{
 		turtle.y++; /* gravity */
 		moveEnemy(turtle.x, turtle.y);
@@ -37,6 +37,13 @@ void enemyMovement()
 	} else if(turtle.x >= 160)
 	{
 		turtle.x = 0;
+	}
+	
+	/* pipes */
+	if(canEntityMove(turtle.x, turtle.y, 0x02))
+	{
+		turtle.x = 25;
+		turtle.y = 24;
 	}
 	
 	turtle.x++;

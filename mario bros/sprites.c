@@ -53,18 +53,16 @@ void marioSetup()
 }
 
 /* collision */
-UBYTE canEntityMove(UINT8 newx, UINT8 newy)
+UBYTE canEntityMove(UINT8 newx, UINT8 newy, const char blankmap)
 {
-	const char blankmap[1] = {0x20};
 	UINT16 indexTlx, indexTly, tileindexTL;
 	UBYTE result;
-	
 	
 	indexTlx = (newx) / 8;
 	indexTly = (newy) / 8;
 	tileindexTL = 20 * indexTly + indexTlx;
 	
-	result = map[tileindexTL] == blankmap[0];
+	result = map[tileindexTL] == blankmap;
 	return result;
 }
 
@@ -74,7 +72,7 @@ void marioMovement()
 	/* move left */
 	if(joypad() & J_LEFT)
 	{
-		if(canEntityMove(mario.x-8, mario.y))
+		if(canEntityMove(mario.x-8, mario.y, 0x20))
 		{
 			mario.x -= 1;
 			moveMario(&mario, mario.x, mario.y);
@@ -84,7 +82,7 @@ void marioMovement()
 	/* move right */
 	if(joypad() & J_RIGHT)
 	{
-		if(canEntityMove(mario.x+8, mario.y))
+		if(canEntityMove(mario.x+8, mario.y, 0x20))
 		{
 			mario.x += 1;
 			moveMario(&mario, mario.x, mario.y);
@@ -94,7 +92,7 @@ void marioMovement()
 	/* jump */
 	if(joypad() & J_B)
 	{
-		if(canEntityMove(mario.x, mario.y-8))
+		if(canEntityMove(mario.x, mario.y-8, 0x20))
 		{
 			mario.y -= 5;
 			moveMario(&mario, mario.x, mario.y);
@@ -111,7 +109,7 @@ void marioMovement()
 	}
 		
 	/* gravity */
-	if(canEntityMove(mario.x, mario.y+8))
+	if(canEntityMove(mario.x, mario.y+8, 0x20))
 	{
 		mario.y += 2;
 		moveMario(&mario, mario.x, mario.y);
