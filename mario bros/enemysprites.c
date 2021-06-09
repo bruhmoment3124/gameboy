@@ -15,7 +15,7 @@ void moveEnemy(UINT8 x, UINT8 y)
 
 void enemySetup()
 {
-	turtle.x = 25, turtle.y = 24;
+	turtle.x = 0, turtle.y = 24;
 	set_sprite_tile(9, 9);
 	moveEnemy(turtle.x, turtle.y);
 }
@@ -24,7 +24,7 @@ void enemySetup()
 void enemyMovement()
 {
 	/* collision */
-	if(canEntityMove(turtle.x, turtle.y-8, 0x20))
+	if(canEntityMove(turtle.x, turtle.y-8, 0x26))
 	{
 		turtle.y++; /* gravity */
 		moveEnemy(turtle.x, turtle.y);
@@ -40,9 +40,9 @@ void enemyMovement()
 	}
 	
 	/* pipes */
-	if(canEntityMove(turtle.x, turtle.y, 0x02))
+	if(canEntityMove(turtle.x, turtle.y, 0x29))
 	{
-		turtle.x = 25;
+		turtle.x = 0;
 		turtle.y = 24;
 	}
 	

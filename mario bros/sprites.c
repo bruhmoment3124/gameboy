@@ -1,4 +1,5 @@
 #include "graphics/map.c"
+#include "graphics/score.c"
 
 struct Character
 {
@@ -72,7 +73,7 @@ void marioMovement()
 	/* move left */
 	if(joypad() & J_LEFT)
 	{
-		if(canEntityMove(mario.x-8, mario.y, 0x20))
+		if(canEntityMove(mario.x-8, mario.y, 0x26))
 		{
 			mario.x -= 1;
 			moveMario(&mario, mario.x, mario.y);
@@ -82,7 +83,7 @@ void marioMovement()
 	/* move right */
 	if(joypad() & J_RIGHT)
 	{
-		if(canEntityMove(mario.x+8, mario.y, 0x20))
+		if(canEntityMove(mario.x+8, mario.y, 0x26))
 		{
 			mario.x += 1;
 			moveMario(&mario, mario.x, mario.y);
@@ -92,7 +93,7 @@ void marioMovement()
 	/* jump */
 	if(joypad() & J_B)
 	{
-		if(canEntityMove(mario.x, mario.y-8, 0x20))
+		if(canEntityMove(mario.x, mario.y-8, 0x26))
 		{
 			mario.y -= 5;
 			moveMario(&mario, mario.x, mario.y);
@@ -109,7 +110,7 @@ void marioMovement()
 	}
 		
 	/* gravity */
-	if(canEntityMove(mario.x, mario.y+8, 0x20))
+	if(canEntityMove(mario.x, mario.y+8, 0x26))
 	{
 		mario.y += 2;
 		moveMario(&mario, mario.x, mario.y);
