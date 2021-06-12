@@ -3,11 +3,12 @@
 #include <gb/font.h>
 #include "sprites.c"
 #include "enemysprites.c"
+#include "graphics/score.c"
 #include "graphics/mario.c"
 #include "graphics/tile.c"
 #include "graphics/enemy.c"
 
-void main() 
+void main()
 {
 	font_t min_font; /* load font */
 	

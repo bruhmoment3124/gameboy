@@ -40,7 +40,7 @@ void enemyMovement()
 	}
 	
 	/* pipes */
-	if(canEntityMove(turtle.x, turtle.y, 0x29))
+	if(canEntityMove(turtle.x, turtle.y-16, 0x29))
 	{
 		turtle.x = 0;
 		turtle.y = 24;

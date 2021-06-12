@@ -1,5 +1,4 @@
 #include "graphics/map.c"
-#include "graphics/score.c"
 
 struct Character
 {
