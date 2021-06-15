@@ -28,7 +28,7 @@ void main()
 	set_bkg_tiles(0, 0, 20, 18, map); /* load map */
 	
 	plyr.x = 45, plyr.y = 45;
-	set_sprite_data(0, 0, player);
+	set_sprite_data(0, 3, player);
 	set_sprite_tile(0, 0);
 	move_sprite(0, plyr.x, plyr.y);
 	
@@ -57,7 +57,7 @@ void main()
 		
 		if(joypad() & J_LEFT)
 		{
-			if(canEntityMove(plyr.x-8, plyr.y, 0x00))
+			if(canEntityMove(plyr.x-8, plyr.y-8, 0x00))
 			{
 				plyr.x--;
 				move_sprite(0, plyr.x, plyr.y);
@@ -67,7 +67,7 @@ void main()
 		
 		if(joypad() & J_RIGHT)
 		{
-			if(canEntityMove(plyr.x, plyr.y, 0x00))
+			if(canEntityMove(plyr.x, plyr.y-8, 0x00))
 			{
 				plyr.x++;
 				move_sprite(0, plyr.x, plyr.y);
