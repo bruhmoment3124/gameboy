@@ -6,7 +6,7 @@ struct Enemy
 	UINT8 y;
 }
 
-struct Enemy turtle; /* turtle object */
+struct Enemy turtle[3]; /* turtle object */
 
 void moveEnemy(UINT8 x, UINT8 y)
 {
@@ -15,37 +15,45 @@ void moveEnemy(UINT8 x, UINT8 y)
 
 void enemySetup()
 {
-	turtle.x = 0, turtle.y = 24;
+	turtle[1].x = 0, turtle[1].y = 24;
+	turtle[2].x = 100, turtle[2].y = 100;
+	turtle[3].x = 20, turtle[3].y = 24;
+	
 	set_sprite_tile(9, 9);
-	moveEnemy(turtle.x, turtle.y);
+	set_sprite_tile(10, 9);
+	set_sprite_tile(11, 9);
+	
+	moveEnemy(turtle[1].x, turtle[1].y);
+	move_sprite(10, turtle[2].x, turtle[2].y);
+	move_sprite(11, turtle[3].x, turtle[3].y);
 }
 
 /* enemy movement pattern */
 void enemyMovement()
 {
 	/* collision */
-	if(canEntityMove(turtle.x, turtle.y-8, 0x26))
+	if(canEntityMove(turtle[1].x, turtle[1].y-8, 0x26))
 	{
-		turtle.y++; /* gravity */
-		moveEnemy(turtle.x, turtle.y);
+		turtle[1].y++; /* gravity */
+		moveEnemy(turtle[1].x, turtle[1].y);
 	}
 	
 	/* screen wrap */
-	if(turtle.x <= 0)
+	if(turtle[1].x <= 0)
 	{
-		turtle.x = 160;
-	} else if(turtle.x >= 160)
+		turtle[1].x = 160;
+	} else if(turtle[1].x >= 160)
 	{
-		turtle.x = 0;
+		turtle[1].x = 0;
 	}
 	
 	/* pipes */
-	if(canEntityMove(turtle.x, turtle.y-16, 0x29))
+	if(canEntityMove(turtle[1].x, turtle[1].y-16, 0x29))
 	{
-		turtle.x = 0;
-		turtle.y = 24;
+		turtle[1].x = 0;
+		turtle[1].y = 24;
 	}
 	
-	turtle.x++;
-	moveEnemy(turtle.x, turtle.y);
+	turtle[1].x++;
+	moveEnemy(turtle[1].x, turtle[1].y);
 }
