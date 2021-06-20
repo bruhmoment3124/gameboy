@@ -6,26 +6,25 @@ struct Enemy
 	UINT8 y;
 }
 
-struct Enemy turtle[3]; /* turtle object */
+struct Enemy turtle[2]; /* turtle object */
 
 void enemySetup()
 {
-	turtle[1].x = 0, turtle[1].y = 24;
-	turtle[2].x = 100, turtle[2].y = 100;
+	turtle[0].x = 0, turtle[0].y = 24;
+	turtle[1].x = 100, turtle[1].y = 100;
 	
 	set_sprite_tile(9, 9);
 	set_sprite_tile(10, 9);
-	set_sprite_tile(11, 9);
 	
-	move_sprite(9, turtle[1].x, turtle[1].y);
-	move_sprite(10, turtle[2].x, turtle[2].y);
+	move_sprite(9, turtle[0].x, turtle[0].y);
+	move_sprite(10, turtle[1].x, turtle[1].y);
 }
 
 /* enemy movement pattern */
 void enemyMovement()
 {
-	int i;
-	for(i=0; i<3; i++)
+	UINT8 i;
+	for(i=0; i<2; i++)
 	{	
 		/* collision */
 		if(canEntityMove(turtle[i].x, turtle[i].y-8, 0x26))
