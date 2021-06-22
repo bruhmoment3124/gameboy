@@ -2,11 +2,11 @@
 /* used for turtle, crab, fly and ice */
 struct Enemy
 {
-	UINT8 x;
-	UINT8 y;
-}
+	uint8_t x;
+	uint8_t y;
+};
 
-struct Enemy turtle[2]; /* turtle object */
+struct Enemy turtle[3]; /* turtle object */
 
 void enemySetup()
 {
@@ -26,8 +26,7 @@ void enemySetup()
 /* enemy movement pattern */
 void enemyMovement()
 {
-	UINT8 i;
-	for(i=0; i<3; i++)
+	for(uint8_t i=0; i<3; i++)
 	{	
 		/* collision */
 		if(canEntityMove(turtle[i].x, turtle[i].y-8, 0x26))

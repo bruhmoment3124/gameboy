@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
 #include <gb/gb.h>
 #include <gb/font.h>
 #include "sprites.c"

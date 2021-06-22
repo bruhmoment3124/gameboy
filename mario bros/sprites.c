@@ -3,10 +3,10 @@
 struct Character
 {
 	UBYTE spritids[9];
-	UINT8 x;
-	UINT8 y;
-	UINT8 width;
-	UINT8 height;
+	uint8_t x;
+	uint8_t y;
+	uint8_t width;
+	uint8_t height;
 } mario;
 
 /* move mario */
@@ -53,9 +53,9 @@ void marioSetup()
 }
 
 /* collision */
-UBYTE canEntityMove(UINT8 newx, UINT8 newy, const char blankmap)
+UBYTE canEntityMove(uint8_t newx, uint8_t newy, const char blankmap)
 {
-	UINT16 indexTlx, indexTly, tileindexTL;
+	uint16_t indexTlx, indexTly, tileindexTL;
 	UBYTE result;
 	
 	indexTlx = (newx) / 8;
