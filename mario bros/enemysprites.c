@@ -12,19 +12,22 @@ void enemySetup()
 {
 	turtle[0].x = 0, turtle[0].y = 24;
 	turtle[1].x = 100, turtle[1].y = 100;
+	turtle[2].x = 100, turtle[2].y = 24;
 	
 	set_sprite_tile(9, 9);
 	set_sprite_tile(10, 9);
+	set_sprite_tile(11, 9);
 	
 	move_sprite(9, turtle[0].x, turtle[0].y);
 	move_sprite(10, turtle[1].x, turtle[1].y);
+	move_sprite(11, turtle[2].x, turtle[2].y);
 }
 
 /* enemy movement pattern */
 void enemyMovement()
 {
 	UINT8 i;
-	for(i=0; i<2; i++)
+	for(i=0; i<3; i++)
 	{	
 		/* collision */
 		if(canEntityMove(turtle[i].x, turtle[i].y-8, 0x26))
