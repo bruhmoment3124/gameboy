@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
+#include <rand.h>
 #include <gb/gb.h>
 #include <gb/font.h>
 #include "sprites.c"
@@ -26,7 +26,7 @@ void main()
 	set_sprite_data(9, 1, enemy); /* load enemy */
 	enemySetup();
 	
-	set_bkg_data(38, 4, tile); /* load tiles for map */
+	set_bkg_data(36, 4, tile); /* load tiles for map */
 	set_bkg_tiles(0, 0, 20, 18, map); /* load map */
 
 	SHOW_SPRITES;
